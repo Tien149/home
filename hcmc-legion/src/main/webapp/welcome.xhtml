@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+		
+	 xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:body bgcolor="white">
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+		<h1 style="font-family: monospace; font-size: 40px;	" align="center">List student</h1>
+			<p:dataTable var="member" value="#{memberListBean.members}"
+				styleClass="myTable" rowIndexVar="count" reflow="true">
+				<p:column style="width:25px" headerText="No" >
+					<h:outputText value="#{count + 1}" />
+				</p:column>
+
+				<p:column headerText="Name" >
+					<h:outputText value="#{member.name}" />
+				</p:column>
+
+				<p:column headerText="Date Of Birth" >
+					<h:outputText value="#{member.dateOfBirth}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Hometown" >
+					<h:outputText value="#{member.hometown}" />
+				</p:column>
+
+				<p:column headerText="Gender" >
+					<h:outputText value="#{member.gender}" />
+				</p:column>
+				
+				<p:column headerText="Programming Language">
+					<h:outputText value="${member.getProgrammingLanguageString()}" />
+				</p:column>
+				
+				<p:column headerText="University" >
+					<h:outputText value="${member.getUniversity()}" />
+				</p:column>
+				
+				<p:column style="width:75px" headerText="Delete">
+
+					<h:form>
+						<p:commandButton ajax="true" title="Delete a member"
+							action="#{memberBean.delete(member.memberid)}"
+							styleClass="ui-priority-primary delbtn" icon="fa fa-trash">
+							<p:confirm header="Confirmation" message="Are you sure?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Yes" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="No" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

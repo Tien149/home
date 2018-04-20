@@ -1,0 +1,3 @@
+insert into member(name, dateOfBirth, hometown, gender, programmingLanguage, university) values ('Nguyen Truong Sinh', '1996-01-03 7:00:00', 'Quang Ngai', 'Male', 'Java, JS', 'University of Science');
+insert into member(name, dateOfBirth, hometown, gender, programmingLanguage, university) values ('Nguyen Quang Trung', '1996-12-05 7:00:00', 'Bien Hoa', 'Male', 'Java, JS', 'University of Information Technology');
+insert into member(name, dateOfBirth, hometown, gender, programmingLanguage, university) values ('Le Nhat Quang', '1995-02-01 7:00:00', 'Buon Me Thuot', 'Male', 'Java, JS', 'Bach Khoa University');

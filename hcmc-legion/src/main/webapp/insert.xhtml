@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>JSF 2.2 Hello World</title>
+</h:head>
+<h:body>
+	<ui:composition template="template/template.xhtml">
+		<ui:define name="content">
+			<div id="container">
+				<h1 style="font-family: monospace; font-size: 40px;" align="center">Insert
+					a new member</h1>
+				<h:form>
+					
+					
+					<h:panelGrid columns="2"  layout="gird" styleClass="ui-panelgrid">
+						<h:form>
+							<p:outputLabel value="Name: " />
+							<br />
+							<p:inputText id="mName" value="#{memberBean.memberBOM.name}"
+								styleClass="inputtest" required="true"
+								requiredMessage="Name is required"
+								validatorMessage="Name only contains letters" maxlength="40"
+								placeholder="eg. Nguyễn Quang Trung">
+								<f:validateRegex pattern="#{Regex.regexr}" />
+								<f:ajax event="blur" execute="@this" render="mNameMessage" />
+								<f:ajax event="blur" execute="@this" render="mName" />
+							</p:inputText>
+							<br />
+							<span></span>
+							<h:message for="mName" style="color:red" id="mNameMessage" />
+							<br />
+
+
+							<p:outputLabel value="Date of birth: " />
+							<br />
+							<p:inputText id="dob" value="#{memberBean.memberBOM.dateOfBirth}"
+								styleClass="inputtest" placeholder="eg. dd/MM/yyyy"
+								required="true" requiredMessage="Day of Birth is required"
+								converterMessage="Day of Birth is not valid" maxlength="10">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+								<f:ajax event="blur" execute="@this" render="mdob" />
+								<f:ajax event="blur" execute="@this" render="dob" />
+							</p:inputText>
+							<br />
+							<span></span>
+							<h:message for="dob" style="color:red" id="mdob" />
+							<br />
+	
+							<p:outputLabel value="Hometown: " />
+							<br />
+							<p:inputText id="mHometown" styleClass="inputtest"
+								value="#{memberBean.memberBOM.hometown}" required="true"
+								requiredMessage="Hometown is required"
+								validatorMessage="Hometown only contains letters"
+								maxlength="40" placeholder="eg. Biên Hoà">
+								<f:validateRegex pattern="#{Regex.regexr}" />
+								<f:ajax event="blur" execute="@this" render="mHometownMessage" />
+								<f:ajax event="blur" execute="@this" render="mHometown" />
+							</p:inputText>
+							<br />
+							<span></span>
+							<h:message for="mHometown" style="color:red"
+								id="mHometownMessage" />
+							<br />
+
+
+							<p:outputLabel for="gender" value="Gender:" />
+							<br />
+							<p:selectOneRadio id="gender"
+								value="#{memberBean.memberBOM.gender}" required="true"
+								requiredMessage="You have to choose one!!!">
+								<f:selectItem itemLabel="Male" itemValue="Male" />
+								<f:selectItem itemLabel="Female" itemValue="Female" />
+								<f:selectItem itemLabel="Other" itemValue="Other" />
+								<f:ajax event="blur" execute="@this" render="mGender" />
+								<f:ajax event="blur" execute="@this" render="gender" />
+							</p:selectOneRadio>
+							<br />
+							<span></span>
+							<h:message for="gender" style="color:red" id="mGender" />
+							<br />
+
+							<p:outputLabel for="pl" value="Programming Language:" />
+							<br />
+							<p:selectManyCheckbox id="pl"
+								value="#{memberBean.memberBOM.programmingLanguage}"
+								required="true"
+								requiredMessage="Please choose one programming language :D">
+								<f:selectItem itemLabel="C++" itemValue="C++" />
+								<f:selectItem itemLabel="JAVA" itemValue="JAVA" />
+								<f:selectItem itemLabel="C#" itemValue="C#" />
+								<f:selectItem itemLabel="JavaScript" itemValue="JavaScript" />
+								<f:selectItem itemLabel="Others" itemValue="Other" />
+								<f:ajax event="change" execute="@this" render="mpl" />
+								<f:ajax event="change" execute="@this" render="pl" />
+							</p:selectManyCheckbox>
+							<br />
+							<span></span>
+							<h:message for="pl" style="color:red" id="mpl" />
+							<br />
+
+							<p:outputLabel for="universiy" value="University: " />
+							<p:selectOneMenu id="universiy" styleClass="selectitem"
+								value="#{memberBean.memberBOM.university}">
+								<f:selectItem itemLabel="Select University" itemValue="UNKNOWN" />
+								<f:selectItem itemLabel="Bach Khoa University"
+									itemValue="Back Khoa University" />
+								<f:selectItem itemLabel="University of Science"
+									itemValue="University of Science" />
+								<f:selectItem itemLabel="University of Information Technology"
+									itemValue="University of Information Technology" />
+								<f:selectItem itemLabel="Ton Duc Thang University"
+									itemValue="Ton Duc Thang University" />
+								<f:selectItem itemLabel="FPT University"
+									itemValue="FPT University" />
+								<f:selectItem itemLabel="Other" itemValue="Other" />
+							</p:selectOneMenu>
+						</h:form>
+						<p></p>
+						<h:panelGroup layout="span">
+							<div class="buttons">
+								<p:commandButton ajax="false" value="Add"
+									action="#{memberBean.insert()}"
+									styleClass="ui-priority-primary" icon="fa fa-user-plus" />
+
+								<p:button outcome="welcome.xhtml" value="Back"
+									styleClass="backbtn" icon="fa fa-arrow-left"></p:button>
+							</div>
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
